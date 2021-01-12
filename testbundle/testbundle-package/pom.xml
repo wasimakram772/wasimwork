@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.hpe</groupId>
+        <artifactId>testbundle</artifactId>
+        <version>1.0</version>
+    </parent>
+    <artifactId>testbundle-package</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+
+    <name>Business Process Bundle</name>
+
+    <properties>
+        <maven.deploy.skip>false</maven.deploy.skip>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.hpe</groupId>
+            <artifactId>testbundle-bcb</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
+
+    <distributionManagement>
+        <repository>
+            <id>${bcb.repository.id}</id>
+            <url>${bundle.repository.url}</url>
+        </repository>
+    </distributionManagement>
+
+    <build>
+        <extensions>
+            <extension>
+                <groupId>org.kuali.maven.wagons</groupId>
+                <artifactId>maven-s3-wagon</artifactId>
+                <version>1.2.1</version>
+            </extension>
+        </extensions>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.1.1</version>
+                <configuration>
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <descriptors>
+                        <descriptor>assembly/package.xml</descriptor>
+                    </descriptors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- To import bundle to Control Tower execute "mvn bundle:import". See for more details: https://kb.workfusion.com/display/ODF/Publish+Bundle+with+Maven
+                 To download trained model from Control Tower into project structure execute "mvn bundle:pull-model -Dmodel={model.name}".
+                 See for more details: https://kb.workfusion.com/display/ODF/Pull+Model+Trained+in+Control+Tower+to+Local+Machine -->
+            <plugin>
+                <groupId>com.workfusion.odf</groupId>
+                <artifactId>bundle-maven-plugin</artifactId>
+                <version>10.1.0.19</version>
+                <configuration>
+                    <server>
+                        <id>${workfusion.server.id}</id>
+                        <url>${workfusion.environment.url}</url>
+                    </server>
+                    <bundle>target/${project.build.finalName}.zip</bundle>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

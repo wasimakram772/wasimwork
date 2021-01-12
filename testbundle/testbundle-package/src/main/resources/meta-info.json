@@ -1,0 +1,9 @@
+{
+    "AUTHOR": "Your Name",
+    "DESCRIPTION": "testbundle 1.0",
+    "INSTANCE": "someinstance.workfusion.com",
+    "NAME": "testbundle:1.0",
+    "PACKAGE_DATE": "2019-9-20 00:00:00",
+    "TARGET_VERSION": "10.1.0.0",
+    "WF_VERSION": "10.1.0.12"
+}
