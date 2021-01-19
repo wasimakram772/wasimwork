@@ -11,7 +11,7 @@
 
     <groupId>com.hpe</groupId>
     <artifactId>testbundle</artifactId>
-    <version>1.0</version>
+    <version>3.0</version>
     <packaging>pom</packaging>
 
     <name>Testing Bots</name>

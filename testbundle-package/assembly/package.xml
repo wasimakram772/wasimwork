@@ -17,9 +17,9 @@
 
     <dependencySets>
         <dependencySet>
-            <outputDirectory>artifactory-dependency/bcb/com/hpe/testbundle-bcb/1.0</outputDirectory>
+            <outputDirectory>artifactory-dependency/bcb/com/hpe/testbundle-bcb/3.0</outputDirectory>
             <includes>
-                <include>com.hpe:testbundle-bcb:jar:1.0</include>
+                <include>com.hpe:testbundle-bcb:jar:3.0</include>
             </includes>
             <useTransitiveDependencies>false</useTransitiveDependencies>
             <useStrictFiltering>true</useStrictFiltering>
